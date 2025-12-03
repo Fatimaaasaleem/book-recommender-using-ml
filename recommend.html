@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Recommender System</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      crossorigin="anonymous"
+    />
+</head>
+
+<style>
+    .text-white {
+        color: white;
+    }
+</style>
+
+<body style="background-color: black">
+
+    <!-- Navbar -->
+    <nav class="navbar" style="background-color: #00a65a">
+        <a class="navbar-brand text-white ms-3">My Book Recommender</a>
+        <ul class="nav navbar-nav ms-3">
+            <li class="nav-item"><a class="nav-link text-white" href="/">Home</a></li>
+            <li class="nav-item"><a class="nav-link text-white" href="/recommend">Recommend</a></li>
+            <li class="nav-item"><a class="nav-link text-white">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12 mt-4">
+                <h1 class="text-white" style="font-size: 50px">Recommended Books</h1>
+
+                <form action="/recommend_books" method="post">
+                    <input name="user_input" type="text" class="form-control"><br>
+                    <input type="submit" class="btn btn-lg btn-warning">
+                </form>
+            </div>
+
+            {% if data %}
+
+            {% for i in data %}
+            <div class="col-md-3 mt-4">
+                <div class="card bg-dark text-white">
+                    <img class="card-img-top" src="{{ i[2] }}" alt="Book Cover">
+
+                    <div class="card-body">
+                        <p class="text-white">{{ i[0] }}</p>
+                        <p class="text-white">{{ i[1] }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+            {% endif %}
+
+        </div>
+    </div>
+
+</body>
+</html>
